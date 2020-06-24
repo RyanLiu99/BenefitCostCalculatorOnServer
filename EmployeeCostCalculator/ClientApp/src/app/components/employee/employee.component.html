@@ -1,0 +1,31 @@
+<form *ngIf="empForm" [formGroup]="empForm" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id" />
+  <label>
+    Name:
+    <input type="text" formControlName="name" required>
+  </label>
+
+  <label>
+    Spouse:
+    <input type="text" formControlName="spouseName">
+  </label>
+
+  <div formArrayName="children">
+    <h3>Children <button (click)="addChild($event)">Add Child</button> </h3>
+
+    <div *ngFor="let child of children.controls; let i=index">
+      <!-- The repeated alias template -->
+      <label>
+        <span>Child {{i+1}}: &nbsp; &nbsp; <a (click)="removeChild(i,$event)" title="Remove">X</a> </span>
+        <input type="text" [formControlName]="i">
+      </label>
+
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!empForm.valid">Submit</button>
+  <span>{{message}}</span>
+
+</form>
+
+<hr>

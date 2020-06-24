@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Spouse</th>
+    <th>Children</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>Paycheck Cost</th>
+    <th>Paycheck Balance</th>
+  </tr>
+  <tr *ngFor="let emp of employees">
+    <td>
+      {{emp.name}}
+    </td>
+    <td>{{emp.spouseName}}</td>
+    <td>{{emp.childrenNames}}</td>
+    <td>
+      <a [routerLink]="['/employee', emp.id]">Edit</a>
+    </td>
+    <td>
+      <button (click)="removeEmployee(emp)">Remove</button>
+    </td>
+    <td>
+      <button (click)="calculateCost(emp)">Calculate Cost</button>
+    </td>
+    <td>{{emp.cost}}</td>
+    <td>{{emp.balance}}</td>
+  </tr>
+</table>
